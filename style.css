@@ -1,1 +1,132 @@
-
+:root{
+  --bg:#0e1014;
+  --panel:#171b22;
+  --panel2:#212732;
+  --line:#2d3644;
+  --text:#f2f4f8;
+  --muted:#a7b0bf;
+  --gold:#ddb45d;
+  --green:#62d68f;
+  --red:#ff7d7d;
+  --blue:#7db2ff;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(180deg,#0d1015,#131821);
+  color:var(--text);
+}
+.wrap{
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px;
+}
+.hero,.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:18px;
+  margin-bottom:16px;
+}
+h1,h2,h3{margin:0 0 12px}
+p{color:var(--muted);line-height:1.5}
+nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:12px;
+}
+nav a, button{
+  background:var(--panel2);
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px 14px;
+  text-decoration:none;
+  cursor:pointer;
+  font-weight:700;
+}
+button.primary, a.primary{
+  background:var(--gold);
+  color:#17120a;
+  border-color:#c89f49;
+}
+button.good{
+  background:var(--green);
+  color:#08160d;
+  border-color:#49b974;
+}
+button.warn{
+  background:#2a3443;
+  color:#dce3ef;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+@media (max-width:950px){
+  .grid{grid-template-columns:1fr}
+}
+label{
+  display:block;
+  margin:10px 0 6px;
+  font-weight:700;
+}
+input,textarea{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--line);
+  background:#0f141b;
+  color:var(--text);
+}
+textarea{min-height:110px;resize:vertical}
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.muted{color:var(--muted)}
+.success{color:var(--green);font-weight:700}
+.error{color:var(--red);font-weight:700}
+.pill{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:#11161e;
+  color:#d8deea;
+  font-size:12px;
+  font-weight:700;
+  margin-right:6px;
+}
+.item{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:12px;
+  background:#111722;
+  margin-top:10px;
+}
+.between{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+th,td{
+  border-bottom:1px solid var(--line);
+  text-align:left;
+  padding:10px 8px;
+}
+th{color:#dce2ec}
+.small{font-size:12px}
+.hidden{display:none}
