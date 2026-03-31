@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Log In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Log In</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+      </nav>
+    </div>
 
+    <section class="card">
+      <label for="loginUsername">Username</label>
+      <input id="loginUsername" maxlength="20">
+
+      <label for="loginPassword">Password</label>
+      <input id="loginPassword" type="password" maxlength="100">
+
+      <div style="margin-top:12px">
+        <button id="loginBtn" class="primary">Log In</button>
+      </div>
+
+      <div id="loginStatus" style="margin-top:12px"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    document.getElementById("loginBtn").addEventListener("click", async () => {
+      await loginUser(
+        document.getElementById("loginUsername").value,
+        document.getElementById("loginPassword").value,
+        "loginStatus"
+      );
+    });
+  </script>
+</body>
+</html>
