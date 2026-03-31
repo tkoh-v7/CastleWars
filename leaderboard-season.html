@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Season Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Season Leaderboard</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="leaderboard-season.html">Season Board</a>
+        <a href="leaderboard-global.html">Lifetime Board</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <div class="between">
+        <div>
+          <h2>Current Season</h2>
+          <p class="muted" id="seasonName">Loading...</p>
+        </div>
+        <button id="refreshSeasonBtn">Refresh</button>
+      </div>
+      <div id="seasonBoard"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    loadSeasonBoard();
+    document.getElementById("refreshSeasonBtn").addEventListener("click", () => loadSeasonBoard());
+  </script>
+</body>
+</html>
