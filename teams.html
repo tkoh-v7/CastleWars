@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Teams</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>All Teams</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="teams.html">Teams</a>
+        <a href="leaderboard-season.html">Season Board</a>
+        <a href="leaderboard-global.html">Lifetime Board</a>
+      </nav>
+    </div>
 
+    <section class="card">
+      <div class="between">
+        <h2>Team List</h2>
+        <button id="refreshTeamsBtn">Refresh Teams</button>
+      </div>
+      <div id="teamsList"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    loadTeams();
+    document.getElementById("refreshTeamsBtn").addEventListener("click", () => loadTeams());
+  </script>
+</body>
+</html>
