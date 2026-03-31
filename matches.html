@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Matches</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>My Matches</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="matches.html">Matches</a>
+        <a href="challenges.html">Challenges</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <div class="between">
+        <h2>Match List</h2>
+        <button id="refreshMatchesBtn">Refresh Matches</button>
+      </div>
+      <div id="matchesBox"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    loadMatches();
+    document.getElementById("refreshMatchesBtn").addEventListener("click", () => loadMatches());
+  </script>
+</body>
+</html>
