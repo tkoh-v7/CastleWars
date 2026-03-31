@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Lifetime Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Lifetime Leaderboard</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="leaderboard-season.html">Season Board</a>
+        <a href="leaderboard-global.html">Lifetime Board</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <div class="between">
+        <h2>All-Time Board</h2>
+        <button id="refreshGlobalBtn">Refresh</button>
+      </div>
+      <div id="globalBoard"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    loadGlobalBoard();
+    document.getElementById("refreshGlobalBtn").addEventListener("click", () => loadGlobalBoard());
+  </script>
+</body>
+</html>
