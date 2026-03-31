@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Challenges</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Open Challenges</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="create-challenge.html">Post Challenge</a>
+        <a href="matches.html">Matches</a>
+      </nav>
+    </div>
 
+    <section class="card">
+      <div class="between">
+        <h2>Available Challenges</h2>
+        <button id="refreshChallengesBtn">Refresh Challenges</button>
+      </div>
+      <div id="openChallenges"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    loadChallenges();
+    document.getElementById("refreshChallengesBtn").addEventListener("click", () => loadChallenges());
+  </script>
+</body>
+</html>
