@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Join Team</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Join Team</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="join-team.html">Join Team</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <label for="joinCode">Invite Code</label>
+      <input id="joinCode" maxlength="12" placeholder="Paste invite code">
+
+      <div style="margin-top:12px">
+        <button id="joinTeamBtn" class="good">Join Team</button>
+      </div>
+
+      <div id="joinTeamStatus" style="margin-top:12px"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    document.getElementById("joinTeamBtn").addEventListener("click", async () => {
+      await joinTeam(
+        document.getElementById("joinCode").value,
+        "joinTeamStatus"
+      );
+    });
+  </script>
+</body>
+</html>
