@@ -1,5 +1,9 @@
 const API_BASE = "https://damp-mud-ecd0.r-2007scaper.workers.dev";
 
+const FETCH_TIMEOUT = 10000; // 10 second timeout
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000; // 1 second between retries
+
 function escapeHtml(str) {
   return String(str || "")
     .replaceAll("&", "&amp;")
@@ -13,28 +17,65 @@ function fmt(ts) {
   return new Date(ts).toLocaleString();
 }
 
-async function api(path, options = {}) {
-  const res = await fetch(API_BASE + path, {
-    credentials: "include",
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {})
-    }
-  });
-
-  let data = null;
+async function fetchWithTimeout(url, options = {}, timeout = FETCH_TIMEOUT) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
+  
   try {
-    data = await res.json();
-  } catch {
-    data = null;
+    return await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+  } finally {
+    clearTimeout(timeoutId);
   }
+}
 
-  if (!res.ok) {
-    throw new Error(data?.error || "Request failed.");
+async function api(path, options = {}) {
+  let lastError;
+  
+  for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
+    try {
+      const res = await fetchWithTimeout(API_BASE + path, {
+        credentials: "include",
+        ...options,
+        headers: {
+          "Content-Type": "application/json",
+          ...(options.headers || {})
+        }
+      });
+
+      let data = null;
+      try {
+        data = await res.json();
+      } catch {
+        data = null;
+      }
+
+      if (!res.ok) {
+        throw new Error(data?.error || `Request failed with status ${res.status}`);
+      }
+
+      return data;
+    } catch (err) {
+      lastError = err;
+      
+      // Don't retry on client errors (4xx)
+      if (err.name === 'AbortError') {
+        lastError = new Error('Request timeout - server not responding');
+      }
+      
+      // Only retry on network errors or timeouts, not on 4xx errors
+      if (attempt < MAX_RETRIES - 1 && (err.name === 'AbortError' || err.name === 'TypeError')) {
+        await new Promise(resolve => setTimeout(resolve, RETRY_DELAY));
+        continue;
+      }
+      
+      break;
+    }
   }
-
-  return data;
+  
+  throw lastError || new Error("Request failed.");
 }
 
 function setStatus(el, text, type = "muted") {
@@ -228,7 +269,8 @@ async function loadTeams(targetId = "teamsList") {
           </div>
         </div>
       </div>
-    `).join("");
+    `).join(""
+    );
   } catch (err) {
     target.innerHTML = `<p class="error">${escapeHtml(err.message)}</p>`;
   }
