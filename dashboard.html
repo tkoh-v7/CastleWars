@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="between">
+        <h1>Dashboard</h1>
+        <div class="row">
+          <span id="authSummary" class="pill">Loading...</span>
+          <button id="logoutBtn" class="warn">Log Out</button>
+        </div>
+      </div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="create-team.html">Create Team</a>
+        <a href="join-team.html">Join Team</a>
+        <a href="create-challenge.html">Post Challenge</a>
+        <a href="matches.html">Matches</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <div class="between">
+        <div>
+          <h2>My Team</h2>
+          <p class="muted">Owner can generate one-use invite codes.</p>
+        </div>
+        <div class="row">
+          <button id="refreshMyTeamBtn">Refresh Team</button>
+          <button id="inviteBtn" class="primary">Generate Invite</button>
+        </div>
+      </div>
+      <div id="myTeamStatus"></div>
+      <div id="myTeamBox"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    loadAuthSummary();
+    loadMyTeam();
+
+    document.getElementById("refreshMyTeamBtn").addEventListener("click", () => loadMyTeam());
+    document.getElementById("inviteBtn").addEventListener("click", () => generateInvite("myTeamStatus"));
+    document.getElementById("logoutBtn").addEventListener("click", async () => {
+      await logoutUser();
+      location.reload();
+    });
+  </script>
+</body>
+</html>
