@@ -1,1 +1,40 @@
 
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Castle Wars League</h1>
+
+<button onclick="createTeam()">Create Team</button>
+<button onclick="load()">Load Leaderboard</button>
+
+<div id="out"></div>
+
+<script>
+const API = "https://damp-mud-ecd0.r-2007scaper.workers.dev";
+
+async function createTeam() {
+  const name = prompt("Team name");
+
+  const res = await fetch(API + "/api/league/team/create", {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({ name })
+  });
+
+  const data = await res.json();
+  alert("Created: " + data.name);
+}
+
+async function load() {
+  const res = await fetch(API + "/api/league/leaderboard");
+  const data = await res.json();
+
+  out.innerHTML = data.map(x =>
+    `<p>${x.teamId} - ${x.points} pts</p>`
+  ).join("");
+}
+</script>
+
+</body>
+</html>
