@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Post Challenge</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <h1>Post Open Challenge</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="create-challenge.html">Post Challenge</a>
+        <a href="challenges.html">Challenges</a>
+      </nav>
+    </div>
+
+    <section class="card">
+      <label for="challengeTitle">Title</label>
+      <input id="challengeTitle" maxlength="60" placeholder="e.g. Saturday 8pm UK">
+
+      <label for="challengeNotes">Notes</label>
+      <textarea id="challengeNotes" maxlength="300" placeholder="Map rules, timing, roster notes, etc"></textarea>
+
+      <div style="margin-top:12px">
+        <button id="postChallengeBtn" class="good">Post Open Challenge</button>
+      </div>
+
+      <div id="challengePostStatus" style="margin-top:12px"></div>
+    </section>
+  </div>
+
+  <script src="league.js"></script>
+  <script>
+    document.getElementById("postChallengeBtn").addEventListener("click", async () => {
+      await postChallenge(
+        document.getElementById("challengeTitle").value,
+        document.getElementById("challengeNotes").value,
+        "challengePostStatus"
+      );
+    });
+  </script>
+</body>
+</html>
