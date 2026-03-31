@@ -1,40 +1,58 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Castle Wars League</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="between">
+        <div>
+          <h1>Castle Wars League</h1>
+          <p>Competitive Castle Wars ladder with team challenges, reported results, seasonal standings, and lifetime points.</p>
+        </div>
+        <div class="row">
+          <span id="authSummary" class="pill">Loading...</span>
+        </div>
+      </div>
 
-<h1>Castle Wars League</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="signup.html">Sign Up</a>
+        <a href="login.html">Log In</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="teams.html">Teams</a>
+        <a href="create-team.html">Create Team</a>
+        <a href="join-team.html">Join Team</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="create-challenge.html">Post Challenge</a>
+        <a href="matches.html">Matches</a>
+        <a href="leaderboard-season.html">Season Board</a>
+        <a href="leaderboard-global.html">Lifetime Board</a>
+      </nav>
+    </div>
 
-<button onclick="createTeam()">Create Team</button>
-<button onclick="load()">Load Leaderboard</button>
+    <div class="grid">
+      <section class="card">
+        <h2>Start Here</h2>
+        <p>Create an account, create a team or join one, then post challenges and start climbing the board.</p>
+      </section>
 
-<div id="out"></div>
+      <section class="card">
+        <h2>Scoring</h2>
+        <p><strong>Win:</strong> 5 points</p>
+        <p><strong>Draw:</strong> 2 points</p>
+        <p><strong>Loss:</strong> 0 points</p>
+      </section>
+    </div>
+  </div>
 
-<script>
-const API = "https://damp-mud-ecd0.r-2007scaper.workers.dev";
-
-async function createTeam() {
-  const name = prompt("Team name");
-
-  const res = await fetch(API + "/api/league/team/create", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ name })
-  });
-
-  const data = await res.json();
-  alert("Created: " + data.name);
-}
-
-async function load() {
-  const res = await fetch(API + "/api/league/leaderboard");
-  const data = await res.json();
-
-  out.innerHTML = data.map(x =>
-    `<p>${x.teamId} - ${x.points} pts</p>`
-  ).join("");
-}
-</script>
-
+  <script src="league.js"></script>
+  <script>
+    loadAuthSummary();
+  </script>
 </body>
 </html>
