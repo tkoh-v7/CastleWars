@@ -1,4 +1,4 @@
-const API_BASE = "https://damp-mud-ecd0.r-2007scaper.workers.dev";
+const API_BASE = "https://cwl.r-2007scaper.workers.dev";
 
 const FETCH_TIMEOUT = 10000; // 10 second timeout
 const MAX_RETRIES = 3;
