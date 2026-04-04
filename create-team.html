@@ -3,38 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Create Team</title>
+  <title>Create Team | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>Create Team</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="create-team.html">Create Team</a>
-        <a href="join-team.html">Join Team</a>
-        <a href="dashboard.html">Dashboard</a>
+<body data-page="create-team">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Register a new roster</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="teams.html" data-nav="teams" data-auth="member">Teams</a>
+        <a href="join-team.html" data-nav="join-team" data-auth="member">Join Team</a>
+        <a href="challenges.html" data-nav="challenges" data-auth="member">Challenges</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <label for="teamName">Team Name</label>
-      <input id="teamName" maxlength="30" placeholder="e.g. Zamorak Elite">
-
-      <label for="teamTag">Team Tag</label>
-      <input id="teamTag" maxlength="6" placeholder="e.g. ZE">
-
-      <div style="margin-top:12px">
-        <button id="createTeamBtn" class="good">Create Team</button>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
 
-      <div id="teamCreateStatus" style="margin-top:12px"></div>
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">New Roster</div>
+          <h1>Create a team and enter the ladder.</h1>
+          <p>Your account becomes the team owner immediately. From there you can generate invite codes, fill the roster, and start posting challenges.</p>
+        </div>
+      </div>
     </section>
-  </div>
+
+    <div class="two-up">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Create Team</div>
+            <h2>Register Your Roster</h2>
+          </div>
+        </div>
+        <div class="form-shell">
+          <div class="form-field">
+            <label for="teamName">Team Name</label>
+            <input id="teamName" maxlength="30" placeholder="e.g. Zamorak Elite">
+          </div>
+          <div class="form-field">
+            <label for="teamTag">Team Tag</label>
+            <input id="teamTag" maxlength="6" placeholder="e.g. ZE">
+          </div>
+          <div class="button-row">
+            <button class="button" id="createTeamBtn" type="button">Create Team</button>
+          </div>
+          <div id="teamCreateStatus"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Quick Rules</div>
+            <h2>Worker Constraints</h2>
+          </div>
+        </div>
+        <div class="stack-list">
+          <div class="list-row"><div><div class="row-title">Name Length</div><div class="row-meta">Team names must be at least 2 characters.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Tag Length</div><div class="row-meta">Tags must be between 2 and 6 characters.</div></div></div>
+          <div class="list-row"><div><div class="row-title">One Team Per User</div><div class="row-meta">The worker blocks duplicate team membership.</div></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
+    initCreateTeamPage();
     document.getElementById("createTeamBtn").addEventListener("click", async () => {
       await createTeam(
         document.getElementById("teamName").value,
