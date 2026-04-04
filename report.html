@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Report Match | Castle Wars League</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="matches">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Match reporting route</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="matches.html" data-nav="matches" data-auth="member">Matches</a>
+      </nav>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
+      </div>
+    </div>
+  </header>
 
+  <main class="page-shell">
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">Reporting</div>
+          <h2>Use the Matches Page</h2>
+        </div>
+      </div>
+      <div class="empty-state">Match reporting is now handled directly inside <a href="matches.html">matches.html</a> so teams can review fixture state and submit results in one place.</div>
+    </section>
+  </main>
+
+  <script src="league.js"></script>
+  <script>
+    initMatchesPage();
+  </script>
+</body>
+</html>
