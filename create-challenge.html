@@ -3,37 +3,86 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Post Challenge</title>
+  <title>Post Challenge | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>Post Open Challenge</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="create-challenge.html">Post Challenge</a>
-        <a href="challenges.html">Challenges</a>
+<body data-page="create-challenge">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Offer a new fixture</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="challenges.html" data-nav="challenges" data-auth="member">Challenges</a>
+        <a href="create-challenge.html" data-nav="create-challenge" data-auth="member">Post Challenge</a>
+        <a href="matches.html" data-nav="matches" data-auth="member">Matches</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <label for="challengeTitle">Title</label>
-      <input id="challengeTitle" maxlength="60" placeholder="e.g. Saturday 8pm UK">
-
-      <label for="challengeNotes">Notes</label>
-      <textarea id="challengeNotes" maxlength="300" placeholder="Map rules, timing, roster notes, etc"></textarea>
-
-      <div style="margin-top:12px">
-        <button id="postChallengeBtn" class="good">Post Open Challenge</button>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
 
-      <div id="challengePostStatus" style="margin-top:12px"></div>
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Posting Flow</div>
+          <h1>Open a challenge for the league to accept.</h1>
+          <p>The worker ties the challenge to your current team, then turns the accepted fixture into a match record when another roster takes it.</p>
+        </div>
+      </div>
     </section>
-  </div>
+
+    <div class="two-up">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Post Challenge</div>
+            <h2>Create Fixture Offer</h2>
+          </div>
+        </div>
+        <div class="form-shell">
+          <div class="form-field">
+            <label for="challengeTitle">Title</label>
+            <input id="challengeTitle" maxlength="60" placeholder="e.g. Saturday 8pm UK">
+          </div>
+          <div class="form-field">
+            <label for="challengeNotes">Notes</label>
+            <textarea id="challengeNotes" maxlength="300" placeholder="Map rules, timing, roster notes, and anything your opponents should know"></textarea>
+          </div>
+          <div class="button-row">
+            <button class="button" id="postChallengeBtn" type="button">Post Challenge</button>
+          </div>
+          <div id="challengePostStatus"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Posting Tips</div>
+            <h2>Make It Easy To Accept</h2>
+          </div>
+        </div>
+        <div class="stack-list">
+          <div class="list-row"><div><div class="row-title">Be Clear</div><div class="row-meta">Use a title that makes the slot easy to understand.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Add Notes</div><div class="row-meta">Include timing, roster size, and any format expectations.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Stay Active</div><div class="row-meta">Accepted challenges immediately create a match for reporting.</div></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
+    initCreateChallengePage();
     document.getElementById("postChallengeBtn").addEventListener("click", async () => {
       await postChallenge(
         document.getElementById("challengeTitle").value,
