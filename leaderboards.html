@@ -1,1 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Leaderboards | Castle Wars League</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="leaderboards">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Seasonal and lifetime standings</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+      </nav>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
+      </div>
+    </div>
+  </header>
 
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Leaderboard Hub</div>
+          <h1>Both ladders in one place.</h1>
+          <p>Use the season board for the active race, the team lifetime board for long-term form, and the player board for member records that carry across roster changes.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="two-up">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Seasonal</div>
+            <h2>Current Season</h2>
+            <p id="seasonHubName">Loading season...</p>
+          </div>
+          <a class="utility-link" href="leaderboard-season.html">Open Full Page</a>
+        </div>
+        <div id="seasonHubBoard"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Lifetime</div>
+            <h2>All-Time Board</h2>
+          </div>
+          <a class="utility-link" href="leaderboards-global.html">Open Full Page</a>
+        </div>
+        <div id="globalHubBoard"></div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">Player Lifetime</div>
+          <h2>Member Leaderboard</h2>
+          <p>Wins are worth 3 points and draws are worth 1 point for every member on the confirmed roster.</p>
+        </div>
+        <a class="utility-link" href="leaderboards-global.html">Open Full Lifetime Page</a>
+      </div>
+      <div id="playerHubStatus"></div>
+      <div id="playerHubBoard"></div>
+    </section>
+  </main>
+
+  <script src="league.js"></script>
+  <script>
+    initLeaderboardsHubPage();
+  </script>
+</body>
+</html>
