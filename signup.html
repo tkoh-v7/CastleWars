@@ -3,37 +3,96 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Sign Up</title>
+  <title>Sign Up | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>Create Account</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="signup.html">Sign Up</a>
-        <a href="login.html">Log In</a>
+<body data-page="signup">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Create an account and enter the ladder</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="signup.html" data-nav="signup" data-auth="guest">Sign Up</a>
+        <a href="login.html" data-nav="login" data-auth="guest">Sign In</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <label for="signupUsername">Username</label>
-      <input id="signupUsername" maxlength="20" placeholder="letters, numbers, _">
-
-      <label for="signupPassword">Password</label>
-      <input id="signupPassword" type="password" maxlength="100" placeholder="minimum 6 chars">
-
-      <div style="margin-top:12px">
-        <button id="signupBtn" class="primary">Create Account</button>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
 
-      <div id="signupStatus" style="margin-top:12px"></div>
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">League Access</div>
+          <h1>Sign up and start your team run.</h1>
+          <p>Your new account signs you into the shared worker session immediately, so you can head straight into team creation or join with an invite code.</p>
+        </div>
+        <div class="hero-side">
+          <div class="stat-card">
+            <div class="stat-label">Next Step</div>
+            <span class="stat-value">Create or Join</span>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
+
+    <div class="auth-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Create Account</div>
+            <h2>Join the League</h2>
+          </div>
+        </div>
+        <div class="form-shell">
+          <div class="form-field">
+            <label for="signupUsername">Username</label>
+            <input id="signupUsername" maxlength="20" placeholder="letters, numbers, _">
+          </div>
+          <div class="form-field">
+            <label for="signupPassword">Password</label>
+            <input id="signupPassword" type="password" maxlength="100" placeholder="minimum 6 characters">
+          </div>
+          <div class="button-row">
+            <button class="button" id="signupBtn" type="button">Create Account</button>
+            <a class="utility-link" href="login.html">Already have an account?</a>
+          </div>
+          <div id="signupStatus"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">What Unlocks</div>
+            <h2>Member Features</h2>
+          </div>
+        </div>
+        <div class="stack-list">
+          <div class="list-row"><div><div class="row-title">Dashboard</div><div class="row-meta">Your team snapshot and quick actions.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Teams</div><div class="row-meta">Create a roster or join by invite code.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Challenges</div><div class="row-meta">Post open fixtures and accept opponents.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Matches</div><div class="row-meta">Report results back into the ladder.</div></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
+    initSignupPage();
     document.getElementById("signupBtn").addEventListener("click", async () => {
       await signupUser(
         document.getElementById("signupUsername").value,
