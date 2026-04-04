@@ -3,34 +3,66 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Teams</title>
+  <title>Teams | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>All Teams</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="teams.html">Teams</a>
-        <a href="leaderboard-season.html">Season Board</a>
-        <a href="leaderboard-global.html">Lifetime Board</a>
+<body data-page="teams">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Scout the league roster</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="teams.html" data-nav="teams" data-auth="member">Teams</a>
+        <a href="join-team.html" data-nav="join-team" data-auth="member">Join Team</a>
+        <a href="challenges.html" data-nav="challenges" data-auth="member">Challenges</a>
+        <a href="matches.html" data-nav="matches" data-auth="member">Matches</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <div class="between">
-        <h2>Team List</h2>
-        <button id="refreshTeamsBtn">Refresh Teams</button>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Team Directory</div>
+          <h1>Every roster in the current league.</h1>
+          <p>Browse teams, see who leads them, and measure the field before you accept or post your next challenge.</p>
+          <div class="button-row">
+            <a class="button" href="create-team.html">Create Team</a>
+            <a class="utility-link" href="join-team.html">Join with Invite</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">League Teams</div>
+          <h2>Registered Rosters</h2>
+        </div>
+      </div>
+      <div id="teamsStatus"></div>
       <div id="teamsList"></div>
     </section>
-  </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
-    loadTeams();
-    document.getElementById("refreshTeamsBtn").addEventListener("click", () => loadTeams());
+    initTeamsPage();
   </script>
 </body>
 </html>
