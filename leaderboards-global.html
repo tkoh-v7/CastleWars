@@ -3,33 +3,72 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Lifetime Leaderboard</title>
+  <title>Lifetime Leaderboard | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>Lifetime Leaderboard</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="leaderboard-season.html">Season Board</a>
-        <a href="leaderboard-global.html">Lifetime Board</a>
+<body data-page="lifetime">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Lifetime standings across seasons</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="signup.html" data-nav="signup" data-auth="guest">Sign Up</a>
+        <a href="login.html" data-nav="login" data-auth="guest">Sign In</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <div class="between">
-        <h2>All-Time Board</h2>
-        <button id="refreshGlobalBtn">Refresh</button>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Lifetime Board</div>
+          <h1>See who has built the strongest record overall.</h1>
+          <p>Lifetime standings now track both teams and individual members, so roster changes do not wipe out personal records.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">All-Time Ladder</div>
+          <h2>Lifetime Standings</h2>
+        </div>
+      </div>
+      <div id="globalStatus"></div>
       <div id="globalBoard"></div>
     </section>
-  </div>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">Member Ladder</div>
+          <h2>Player Lifetime Standings</h2>
+          <p>Each confirmed win gives members 3 points, while a draw gives 1 point.</p>
+        </div>
+      </div>
+      <div id="playerLifetimeStatus"></div>
+      <div id="playerLifetimeBoard"></div>
+    </section>
+  </main>
 
   <script src="league.js"></script>
   <script>
-    loadGlobalBoard();
-    document.getElementById("refreshGlobalBtn").addEventListener("click", () => loadGlobalBoard());
+    initLifetimePage();
   </script>
 </body>
 </html>
