@@ -3,36 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Season Leaderboard</title>
+  <title>Season Leaderboard | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>Season Leaderboard</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="leaderboard-season.html">Season Board</a>
-        <a href="leaderboard-global.html">Lifetime Board</a>
-      </nav>
-    </div>
-
-    <section class="card">
-      <div class="between">
-        <div>
-          <h2>Current Season</h2>
-          <p class="muted" id="seasonName">Loading...</p>
+<body data-page="season">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Current season standings</span>
         </div>
-        <button id="refreshSeasonBtn">Refresh</button>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="signup.html" data-nav="signup" data-auth="guest">Sign Up</a>
+        <a href="login.html" data-nav="login" data-auth="guest">Sign In</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+      </nav>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Season Board</div>
+          <h1>Track the current climb.</h1>
+          <p id="seasonName">Loading current season...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">Seasonal Ladder</div>
+          <h2>Current Standings</h2>
+        </div>
+      </div>
+      <div id="seasonStatus"></div>
       <div id="seasonBoard"></div>
     </section>
-  </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
-    loadSeasonBoard();
-    document.getElementById("refreshSeasonBtn").addEventListener("click", () => loadSeasonBoard());
+    initSeasonPage();
   </script>
 </body>
 </html>
