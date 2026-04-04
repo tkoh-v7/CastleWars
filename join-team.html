@@ -3,39 +3,85 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Join Team</title>
+  <title>Join Team | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <h1>Join Team</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="join-team.html">Join Team</a>
-        <a href="dashboard.html">Dashboard</a>
+<body data-page="join-team">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Join a roster with an invite code</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="teams.html" data-nav="teams" data-auth="member">Teams</a>
+        <a href="join-team.html" data-nav="join-team" data-auth="member">Join Team</a>
+        <a href="challenges.html" data-nav="challenges" data-auth="member">Challenges</a>
+        <a href="matches.html" data-nav="matches" data-auth="member">Matches</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <label for="joinCode">Invite Code</label>
-      <input id="joinCode" maxlength="12" placeholder="Paste invite code">
-
-      <div style="margin-top:12px">
-        <button id="joinTeamBtn" class="good">Join Team</button>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
+    </div>
+  </header>
 
-      <div id="joinTeamStatus" style="margin-top:12px"></div>
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Invite Flow</div>
+          <h1>Paste an invite and join your team.</h1>
+          <p>Team owners generate one-use invite codes from the dashboard. Once accepted, you are immediately attached to that roster in the worker.</p>
+        </div>
+      </div>
     </section>
-  </div>
+
+    <div class="two-up">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Join Team</div>
+            <h2>Redeem Invite Code</h2>
+          </div>
+        </div>
+        <div class="form-shell">
+          <div class="form-field">
+            <label for="joinCode">Invite Code</label>
+            <input id="joinCode" maxlength="12" placeholder="Paste invite code">
+          </div>
+          <div class="button-row">
+            <button class="button" id="joinTeamBtn" type="button">Join Team</button>
+          </div>
+          <div id="joinTeamStatus"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Notes</div>
+            <h2>Before You Join</h2>
+          </div>
+        </div>
+        <div class="stack-list">
+          <div class="list-row"><div><div class="row-title">Single Team Rule</div><div class="row-meta">The worker prevents a player joining multiple teams.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Owner Approval</div><div class="row-meta">Only team owners can generate new invite codes.</div></div></div>
+          <div class="list-row"><div><div class="row-title">Instant Access</div><div class="row-meta">Successful join puts you straight into that roster.</div></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
+    initJoinTeamPage();
     document.getElementById("joinTeamBtn").addEventListener("click", async () => {
-      await joinTeam(
-        document.getElementById("joinCode").value,
-        "joinTeamStatus"
-      );
+      await joinTeam(document.getElementById("joinCode").value, "joinTeamStatus");
     });
   </script>
 </body>
