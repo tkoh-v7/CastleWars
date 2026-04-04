@@ -6,53 +6,120 @@
   <title>Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <div class="between">
-        <div>
-          <h1>Castle Wars League</h1>
-          <p>Competitive Castle Wars ladder with team challenges, reported results, seasonal standings, and lifetime points.</p>
+<body data-page="home">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Season ladders, team fixtures, and match reporting</span>
         </div>
-        <div class="row">
-          <span id="authSummary" class="pill">Loading...</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="signup.html" data-nav="signup" data-auth="guest">Sign Up</a>
+        <a href="login.html" data-nav="login" data-auth="guest">Sign In</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="teams.html" data-nav="teams" data-auth="member">Teams</a>
+        <a href="join-team.html" data-nav="join-team" data-auth="member">Join Team</a>
+        <a href="challenges.html" data-nav="challenges" data-auth="member">Challenges</a>
+        <a href="create-challenge.html" data-nav="create-challenge" data-auth="member">Post Challenge</a>
+        <a href="matches.html" data-nav="matches" data-auth="member">Matches</a>
+      </nav>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Competitive OSRS Castle Wars</div>
+          <h1>Play the ladder. Build a team. Report every result.</h1>
+          <p>Public visitors can track seasonal and lifetime standings. Signed-in players unlock their dashboard, team management, challenge board, and match reporting flow.</p>
+          <div class="button-row">
+            <a class="button" href="signup.html">Create League Account</a>
+            <a class="button ghost" href="login.html">Sign In</a>
+            <a class="utility-link" href="leaderboard-season.html">View Current Season</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <div class="stat-card">
+            <div class="stat-label">Public Route</div>
+            <span class="stat-value">Home + Boards</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Member Route</div>
+            <span class="stat-value">Dashboard + Teams + Matches</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label" id="userGreeting">Loading session...</div>
+            <span class="stat-value">Worker-backed</span>
+          </div>
         </div>
       </div>
+    </section>
 
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="signup.html">Sign Up</a>
-        <a href="login.html">Log In</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="teams.html">Teams</a>
-        <a href="create-team.html">Create Team</a>
-        <a href="join-team.html">Join Team</a>
-        <a href="challenges.html">Challenges</a>
-        <a href="create-challenge.html">Post Challenge</a>
-        <a href="matches.html">Matches</a>
-        <a href="leaderboard-season.html">Season Board</a>
-        <a href="leaderboard-global.html">Lifetime Board</a>
-      </nav>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Season Ladder</div>
+        <span class="stat-value">Live</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Lifetime Ladder</div>
+        <span class="stat-value">Tracked</span>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Open Challenges</div>
+        <span class="stat-value">Ready</span>
+      </div>
     </div>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Start Here</h2>
-        <p>Create an account, create a team or join one, then post challenges and start climbing the board.</p>
+    <div class="panel-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Seasonal Leaderboard</div>
+            <h2>Current Season Top 5</h2>
+          </div>
+          <a class="utility-link" href="leaderboard-season.html">Full Board</a>
+        </div>
+        <div id="seasonPreview"></div>
       </section>
 
-      <section class="card">
-        <h2>Scoring</h2>
-        <p><strong>Win:</strong> 5 points</p>
-        <p><strong>Draw:</strong> 2 points</p>
-        <p><strong>Loss:</strong> 0 points</p>
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Lifetime Leaderboard</div>
+            <h2>All-Time Top 5</h2>
+          </div>
+          <a class="utility-link" href="leaderboards-global.html">Full Board</a>
+        </div>
+        <div id="globalPreview"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Challenge Feed</div>
+            <h2>Latest Open Challenges</h2>
+          </div>
+          <a class="utility-link" href="challenges.html">Open Board</a>
+        </div>
+        <div id="challengePreview"></div>
       </section>
     </div>
-  </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
-    loadAuthSummary();
+    initHomePage();
   </script>
 </body>
 </html>
