@@ -3,55 +3,106 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Dashboard</title>
+  <title>Dashboard | Castle Wars League</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="wrap">
-    <div class="hero">
-      <div class="between">
-        <h1>Dashboard</h1>
-        <div class="row">
-          <span id="authSummary" class="pill">Loading...</span>
-          <button id="logoutBtn" class="warn">Log Out</button>
+<body data-page="dashboard">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">CW</div>
+        <div class="brand-copy">
+          <strong>Castle Wars League</strong>
+          <span>Your team hub and match workflow</span>
         </div>
-      </div>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="create-team.html">Create Team</a>
-        <a href="join-team.html">Join Team</a>
-        <a href="create-challenge.html">Post Challenge</a>
-        <a href="matches.html">Matches</a>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-nav="home" data-auth="any">Home</a>
+        <a href="leaderboard-season.html" data-nav="season" data-auth="any">Season Board</a>
+        <a href="leaderboards-global.html" data-nav="lifetime" data-auth="any">Lifetime Board</a>
+        <a href="dashboard.html" data-nav="dashboard" data-auth="member">Dashboard</a>
+        <a href="teams.html" data-nav="teams" data-auth="member">Teams</a>
+        <a href="join-team.html" data-nav="join-team" data-auth="member">Join Team</a>
+        <a href="challenges.html" data-nav="challenges" data-auth="member">Challenges</a>
+        <a href="create-challenge.html" data-nav="create-challenge" data-auth="member">Post Challenge</a>
+        <a href="matches.html" data-nav="matches" data-auth="member">Matches</a>
       </nav>
-    </div>
-
-    <section class="card">
-      <div class="between">
-        <div>
-          <h2>My Team</h2>
-          <p class="muted">Owner can generate one-use invite codes.</p>
-        </div>
-        <div class="row">
-          <button id="refreshMyTeamBtn">Refresh Team</button>
-          <button id="inviteBtn" class="primary">Generate Invite</button>
-        </div>
+      <div class="auth-strip">
+        <span class="auth-badge" id="authSummary"></span>
+        <div class="auth-actions" id="authActions"></div>
       </div>
-      <div id="myTeamStatus"></div>
+    </div>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-panel">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <div class="hero-kicker">Member Dashboard</div>
+          <h1>Keep your roster moving.</h1>
+          <p id="userGreeting">Loading account...</p>
+          <div class="button-row">
+            <button class="button" type="button" id="inviteBtn">Generate Invite Code</button>
+            <a class="utility-link" href="create-challenge.html">Post Challenge</a>
+          </div>
+          <div id="myTeamStatus"></div>
+        </div>
+        <div class="hero-side" id="dashboardShortcuts"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">Roster Snapshot</div>
+          <h2>Your Team</h2>
+        </div>
+        <a class="utility-link" href="teams.html">Browse League Teams</a>
+      </div>
       <div id="myTeamBox"></div>
     </section>
-  </div>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <div class="info-eyebrow">Open Board</div>
+          <h2>Fresh Challenges</h2>
+        </div>
+        <a class="utility-link" href="challenges.html">Go to Challenges</a>
+      </div>
+      <div id="dashboardChallenges"></div>
+    </section>
+
+    <div class="two-up">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Season Ladder</div>
+            <h2>Current Top 5</h2>
+          </div>
+          <a class="utility-link" href="leaderboard-season.html">Full Season</a>
+        </div>
+        <div id="dashboardSeasonBoard"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <div class="info-eyebrow">Lifetime Ladder</div>
+            <h2>All-Time Top 5</h2>
+          </div>
+          <a class="utility-link" href="leaderboards-global.html">Full Lifetime</a>
+        </div>
+        <div id="dashboardGlobalBoard"></div>
+      </section>
+    </div>
+  </main>
 
   <script src="league.js"></script>
   <script>
-    loadAuthSummary();
-    loadMyTeam();
-
-    document.getElementById("refreshMyTeamBtn").addEventListener("click", () => loadMyTeam());
-    document.getElementById("inviteBtn").addEventListener("click", () => generateInvite("myTeamStatus"));
-    document.getElementById("logoutBtn").addEventListener("click", async () => {
-      await logoutUser();
-      location.reload();
+    initDashboardPage();
+    document.getElementById("inviteBtn").addEventListener("click", async () => {
+      await generateInvite("myTeamStatus");
     });
   </script>
 </body>
